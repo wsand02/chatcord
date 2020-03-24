@@ -4,9 +4,13 @@ const roomName = document.getElementById('room-name');
 const userList = document.getElementById('users');
 
 // Get username and room from URL
-const { username, room } = Qs.parse(location.search, {
+let { username, room } = Qs.parse(location.search, {
   ignoreQueryPrefix: true
 });
+
+if (typeof room === 'undefined' || room === '') {
+  room = uuidv4();
+}
 
 const socket = io();
 
